@@ -105,7 +105,7 @@ smart-research-assistant/
 ### 1. Clone the Repository
 
 ```
-git clone https://github.com/your-username/smart-research-assistant.git
+git clone https://github.com/vaibhv19/smart-research-assistant.git
 cd smart-research-assistant
 ```
 
