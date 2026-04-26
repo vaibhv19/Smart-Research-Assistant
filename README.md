@@ -1,42 +1,43 @@
-# 🧠 Smart Research Assistant (Browser Extension + Spring Boot + Gemini API)
+# 🧠 Smart Research Assistant
 
-A context-aware AI-powered research assistant built as a browser extension, powered by a Spring Boot backend and Google's Gemini API. This tool helps users summarize web content, analyze highlighted text, and generate structured insights in real time.
+An AI-powered browser extension built with **Spring Boot**, **Spring AI**, and **Google Gemini API** that helps users summarize webpages, analyze content, and generate contextual insights directly from the browser.
+
+This project combines a browser extension frontend with a scalable Java backend to deliver fast and intelligent research assistance for students, developers, and professionals.
 
 ---
 
 ## 🚀 Features
 
 * 🔍 **Webpage Summarization**
-  Instantly summarize the content of any webpage into concise, structured insights.
+  Generate concise summaries of long articles and webpages instantly.
 
-* ✨ **Highlight → Ask AI**
-  Select any text on a webpage and get explanations, expansions, or simplified versions.
+* 🧠 **Context-Aware Insights**
+  Analyze page content and return relevant AI-generated responses.
 
-* 🧠 **Context-Aware Responses**
-  Uses page title, URL, and content to generate more relevant and accurate outputs.
+* 📌 **Browser Side Panel Support**
+  Access research tools directly inside the browser through the extension side panel.
 
-* 📑 **Structured Output**
-  Responses formatted into:
+* ⚡ **Real-Time AI Assistance**
+  Uses Gemini API through Spring AI for quick and accurate responses.
 
-  * Summary
-  * Key Points
-  * Examples
+* 🔗 **Seamless Frontend + Backend Integration**
+  Browser extension communicates with Spring Boot REST APIs.
 
-* 💾 **Research History (Optional)**
-  Save and revisit previous queries and AI responses.
+* 📝 **Notes / Productivity Support**
+  Organize generated outputs for research workflows.
 
 ---
 
 ## 🏗️ Architecture
 
-```
-Browser Extension (Chrome)
-        ↓
+```text id="wq6i3t"
+Browser Extension
+      ↓
 Spring Boot REST API
-        ↓
-Gemini API (LLM)
-        ↓
-(Optional) Database (MongoDB)
+      ↓
+Spring AI
+      ↓
+Google Gemini API
 ```
 
 ---
@@ -47,156 +48,92 @@ Gemini API (LLM)
 
 * Java
 * Spring Boot
-* Spring Web
+* Spring AI
+* REST APIs
+* Maven
 
-### Frontend (Extension)
+### Frontend
 
 * JavaScript
 * HTML
 * CSS
-* Chrome Extension APIs
+* Browser Extension APIs
 
-### AI Integration
+### AI
 
 * Google Gemini API
+* Prompt Engineering
 
-### Optional
+### Tools
 
-* MongoDB (for history storage)
-* Docker (for containerization)
-
----
-
-## ⚙️ How It Works
-
-1. User opens a webpage
-2. Clicks the extension or highlights text
-3. Extension captures content/context
-4. Sends request to Spring Boot backend
-5. Backend processes request & calls Gemini API
-6. AI response is returned and displayed in UI
+* Git
+* GitHub
+* Postman
+* IntelliJ IDEA
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text id="jvlz1o"
 smart-research-assistant/
-│
-├── backend/                # Spring Boot application
+│── backend/
 │   ├── controller/
 │   ├── service/
-│   ├── config/
-│   └── model/
+│   ├── model/
+│   └── config/
 │
-├── extension/             # Browser extension
-│   ├── popup/
-│   ├── content-script/
-│   ├── background.js
-│   └── manifest.json
+│── extension/
+│   ├── manifest.json
+│   ├── sidepanel.html
+│   ├── sidepanel.js
+│   └── styles.css
 │
 └── README.md
 ```
 
 ---
 
-## 🔧 Setup Instructions
+## ⚙️ How It Works
 
-### 1. Clone the Repository
-
-```
-git clone https://github.com/vaibhv19/smart-research-assistant.git
-cd smart-research-assistant
-```
-
----
-
-### 2. Backend Setup (Spring Boot)
-
-* Add your Gemini API key in `application.properties`:
-
-```
-gemini.api.key=YOUR_API_KEY
-```
-
-* Run the application:
-
-```
-./mvnw spring-boot:run
-```
+1. User opens a webpage.
+2. Launches the browser extension side panel.
+3. Selects an action like summarize or analyze.
+4. Extension sends content to Spring Boot backend.
+5. Spring AI communicates with Gemini API.
+6. AI-generated result is returned and displayed instantly.
 
 ---
 
-### 3. Load Browser Extension
+## 🔌 API Example
 
-1. Go to Chrome → `chrome://extensions/`
-2. Enable **Developer Mode**
-3. Click **Load Unpacked**
-4. Select the `extension/` folder
+### POST `/api/research/process`
 
----
-
-## 🔌 API Endpoints
-
-### POST `/api/summarize`
-
-Summarize webpage content
-
-**Request:**
-
-```
+```json id="x0u2fa"
 {
-  "content": "webpage text",
-  "title": "page title",
-  "url": "page url"
+  "operation": "summarize",
+  "content": "Artificial Intelligence is transforming modern industries..."
 }
 ```
-
----
-
-### POST `/api/analyze`
-
-Analyze highlighted text
-
-**Request:**
-
-```
-{
-  "text": "selected text",
-  "action": "explain | summarize | expand"
-}
-```
-
----
-
-## 🧠 Prompt Engineering Example
-
-```
-Summarize the following content in structured format:
-- Key Points
-- Examples
-- Important Concepts
-Make it concise and easy to revise for exams.
-```
-
----
-
-## 🚀 Future Enhancements
-
-* Multi-tab research synthesis
-* Citation & source tracking
-* User authentication & cloud sync
-* Export notes (PDF / Markdown)
-* Voice-based interaction
 
 ---
 
 ## 💡 Use Cases
 
-* Students preparing for exams
-* Developers researching concepts
-* Quick understanding of long articles
-* Productivity enhancement
+* Students researching topics quickly
+* Developers learning technical concepts
+* Professionals summarizing long content
+* Productivity enhancement while browsing
+
+---
+
+## 🚀 Future Improvements
+
+* Save research history
+* Export notes to PDF / Markdown
+* Multi-tab research mode
+* Voice interaction
+* User authentication & sync
 
 ---
 
@@ -206,12 +143,6 @@ Make it concise and easy to revise for exams.
 
 ---
 
-## ⭐ Contribute
+## ⭐ If you found this useful
 
-Feel free to fork, improve, and open pull requests!
-
----
-
-## 📜 License
-
-This project is open-source and available under the MIT License.
+Give this repository a star and feel free to contribute.
