@@ -9,10 +9,10 @@ import java.util.Map;
 
 @Service
 public class ResearchService {
-    @Value("${gemini.api.url}")
-    private String geminiApiUrl;
+    @Value("${gemini.api.base-url}")
+    private String geminiApiBaseUrl;
 
-    @Value("${gemini.api.key}")
+    @Value("${gemini.api.key:}")
     private String geminiApiKey;
 
     private final WebClient webClient;
@@ -29,6 +29,10 @@ public class ResearchService {
         String prompt = buildPrompt(request);
 
         // Query the AI Model API
+        if (geminiApiKey.isBlank()) {
+            throw new IllegalStateException("GEMINI_KEY is not configured. Set GEMINI_KEY as an environment variable or in application.properties.");
+        }
+
         Map<String, Object> requestBody = Map.of(
                 "contents", new Object[] {
                         Map.of("parts", new Object[]{
@@ -37,8 +41,9 @@ public class ResearchService {
                 }
         );
 
+        String requestUrl = geminiApiBaseUrl + "?key=" + geminiApiKey;
         String response = webClient.post()
-                .uri(geminiApiUrl + geminiApiKey)
+                .uri(requestUrl)
                 .bodyValue(requestBody)
                 .retrieve()
                 .bodyToMono(String.class)
